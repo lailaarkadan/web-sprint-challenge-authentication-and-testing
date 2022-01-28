@@ -11,36 +11,36 @@ test('correct environment', () => {
 })
 
 describe('[POST] /register', () => {
-  test('responds with error when no username', async () => {
-    const res = await request(server).post('/api/auth/register').send({
+  test('not valid without username', async () => {
+    const time = await request(server).post('/api/auth/register').send({
       username: '', 
       password: 'adadada',
     })
-    expect(res.body).toBe("username and password required");
+    expect(time.body).toBe("username and password required");
   })
 
-  test('responds with error when no password', async () => {
-    const res = await request(server).post('/api/auth/register').send({
+  test('not valid without password', async () => {
+    const time = await request(server).post('/api/auth/register').send({
       username: 'timyy', 
       password: '',
     })
-    expect(res.body).toBe("username and password required");
+    expect(time.body).toBe("username and password required");
 })
 })
 
 describe('[POST] /login', () => {
-  test('responds with error when no username', async () => {
-    const res = await request(server).post('/login').send({
+  test('not valid without username', async () => {
+    const time = await request(server).post('/login').send({
       username: '', 
       password: 'lalala'
     })
-    expect(res.status).toBe(404)
+    expect(time.status).toBe(404)
   })
-  test('responds with error when no password', async () => {
-    const res = await request(server).post('/api/auth/login').send({
+  test('not valid without password', async () => {
+    const time = await request(server).post('/api/auth/login').send({
       username: 'timyy', 
       password: '',
     })
-    expect(res.body).toBe("username and password required");
+    expect(time.body).toBe("username and password required");
   })
 }) 
